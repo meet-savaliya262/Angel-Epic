@@ -1,0 +1,162 @@
+/* Reset & base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    min-height: 100vh;
+    background:linear-gradient(to right, rgb(54, 54, 196),skyblue,pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Wrapper container */
+  .wrapper {
+    background: #ecf0f3;
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 12px 12px 20px #d1d9e6,
+                -8px -8px 12px #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Hide radio buttons */
+  input[type="radio"] {
+    display: none;
+  }
+  
+  /* Tabs */
+  .tab-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  
+  .tab {
+    flex: 1;
+    padding: 10px;
+    background: #ecf0f3;
+    box-shadow: inset 6px 6px 10px #d1d9e6,
+                inset -6px -6px 10px #ffffff;
+    color: #555;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 12px;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+  }
+  
+  #login:checked ~ .form-container .login-tab,
+  #signup:checked ~ .form-container .signup-tab {
+    background: #007bff;
+    color: white;
+    box-shadow: 4px 4px 10px #c5c5c5, -4px -4px 10px #ffffff;
+  }
+  
+  /* Form base */
+  .form {
+    display: none;
+    flex-direction: column;
+  }
+  
+  .form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  input {
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 10px;
+    background: #ecf0f3;
+    box-shadow: inset 4px 4px 6px #d1d9e6,
+                inset -4px -4px 6px #ffffff;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  input:focus {
+    box-shadow: inset 2px 2px 4px #d1d9e6,
+                inset -2px -2px 4px #ffffff,
+                0 0 5px #007bff;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 4px 4px 8px #c5c5c5, -4px -4px 8px #ffffff;
+  }
+  
+  button:hover {
+    background-color: #005ecb;
+    box-shadow: 0px 0px 10px rgb(97, 97, 214);
+  }
+  
+  .link {
+    margin-top: 10px;
+    font-size: 0.9em;
+    text-align: center;
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  /* Show active form */
+  #login:checked ~ .form-container .login-form {
+    display: flex;
+  }
+  #signup:checked ~ .form-container .signup-form {
+    display: flex;
+  }
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin-top: -1.3rem;/
+  }
+  
+  
+  .close-btn:hover {
+    color: #ff4c4c;
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .wrapper {
+      padding: 20px 15px;
+    }
+  
+    .tab {
+      font-size: 14px;
+    }
+  
+    input, button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
