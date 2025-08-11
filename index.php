@@ -76,34 +76,34 @@
          <div class="container">
             <div class="white_bg">
             <div class="row">
-               <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
                      <i><img src="icon/1.png"/></i>
                      <h3>Data recovery</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
-               </dir>
-               <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
                      <i><img src="icon/2.png"/></i>
                      <h3>Computer repair</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
-               </dir>
-               <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
                      <i><img src="icon/3.png"/></i>
                      <h3>Mobile service</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
-               </dir>
-               <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
                      <i><img src="icon/4.png"/></i>
                      <h3>Network solutions</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
-               </dir>
+               </div>
                <div class="col-md-12">
                   <a class="read-more">Read More</a>
                </div>
@@ -145,9 +145,11 @@
                      {
                         echo '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                                  <div class="product-box">
-                                    <i><img src="product_img/' . $row['p_img'] . '" style="height:200px;object-fit:cover;"></i>
-                                    <h3>' . $row['p_nm'] . '</h3>
-                                    <span>₹' . $row['p_price'] . '</span>
+                                    <a href="product-single.php?pid='.$row['p_id'].'">
+                                       <i><img src="product_img/' . $row['p_img'] . '" style="height:200px;object-fit:cover;"></i>
+                                       <h3>' . $row['p_nm'] . '</h3>
+                                       <span>₹' . $row['p_price'] . '</span>
+                                    </a>
                                  </div>
                               </div>';
                      }
