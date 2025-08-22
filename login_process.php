@@ -1,38 +1,38 @@
-<?php
+<?php session_start();
     if(!empty($_POST))
     {
         extract($_POST);
-        $error=array();
-        
-       
+        $_SESSION['error']=array();
         if(empty($email))
         {
-            $error[]="Enter your email address";
+            $_SESSION['error'][]="please enter email";
         }
         if(empty($pwd))
         {
-            $error[]="Enter your password";
+            $_SESSION['error'][]="please enter password";
         }
-        
-
-        if (!empty($error)) 
+        if(! empty($_SESSION['error']))
         {
-            foreach ($error as $er) 
-            {
-                echo "<p style='color:red;'>$er</p>";
-            }
-        } 
+            header("location:login.php");
+        }
         else
         {
             include("inc/config.php");
-            $q="select s_email,s_pwd from signup where s_status=1"
-            mysqli_query($link,$q);
-            header("location:login.php");
+            $q="select * from signup where s_email='".mysqli_real_escape_string($link,$email)."' and s_pwd='".mysqli_real_escape_string($link,$pwd)."'";
+            $res=mysqli_query($link,$q);
+            $row=mysqli_fetch_assoc($res);
+            if(empty($row))
+            {
+                header("location:login.php");
+            }
+            else
+            {
+                header("location:index.php");
+            }
         }
     }
     else
     {
         header("location:login.php");
     }
-
 ?>

@@ -122,7 +122,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFile">Product Image &nbsp;&nbsp;&nbsp;
-                        <img src="../products_image/<?php echo $p_img; ?>" width="30">
+                        <img src="../product_img/<?php echo $p_img; ?>" width="30">
                     </label>
                     <div class="input-group">
                       <div class="custom-file">

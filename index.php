@@ -143,7 +143,7 @@
                   {
                      while ($row = mysqli_fetch_assoc($p_res)) 
                      {
-                        echo '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                        echo '<div class="col-6 col-xl-3 col-lg-3 col-md-6 col-sm-12">
                                  <div class="product-box">
                                     <a href="product-single.php?pid='.$row['p_id'].'">
                                        <i><img src="product_img/' . $row['p_img'] . '" style="height:200px;object-fit:cover;"></i>

@@ -1,5 +1,16 @@
-<?php
-      include("inc/header.php");
+<?php session_start();
+    include("include/header.php");
+
+    if(isset($_SESSION['status']) && $_SESSION['status']=="success") 
+    {
+        echo "<script>alert('Your form has been successfully sent!');</script>";
+        unset($_SESSION['status']);
+    }
+    else if(isset($_SESSION['status']) && $_SESSION['status']=="error") 
+    {
+        echo "<script>alert(' Please fill all fields before submitting!');</script>";
+        unset($_SESSION['status']);
+    }
 ?>
 
       <div class="brand_color">

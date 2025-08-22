@@ -36,7 +36,7 @@
         {
             include("inc/config.php");
             $t=time();
-            $q="insert into signup(s_fnm,s_email,s_pwd,s_rpwd,s_time) values('".$fnm."','".$email."','".$pwd."','".$rpwd."','".$t."')";
+            $q="insert into signup(s_fnm,s_email,s_pwd,s_time) values('".$fnm."','".$email."','".$pwd."','".$t."')";
             mysqli_query($link,$q);
             header("location:index.php");
         }
