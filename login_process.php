@@ -27,6 +27,9 @@
             }
             else
             {
+                $_SESSION['client']['email']=$row['u_email'];
+                $_SESSION['client']['id']=$row['u_id'];
+                $_SESSION['client']['status']=true;
                 header("location:index.php");
             }
         }

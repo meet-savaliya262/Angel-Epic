@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
     include("inc/header.php");
 ?>
 
@@ -20,21 +20,38 @@
             </tr>
           </thead>
           <tbody id="cart-items">
-            <tr>
-              <td><img src="images/1.jpg" alt="Product" class="product-img" /></td>
-              <td>Product 1</td>
-              <td class="price">$20.00</td>
-            <td>
-            <div class="quantity-buttons">
-                <button class="btn btn-outline-secondary btn-sm quantity-minus">-</button>
-                <input type="text" class="form-control form-control-sm quantity-input text-center" value="1" style="width: 50px;">
-                <button class="btn btn-outline-secondary btn-sm quantity-plus">+</button>
-            </div>
-            </td>
-              <td class="item-total">$20.00</td>
-              <td><i class="fa fa-trash remove-btn"></i></td>
-            </tr>
-            <!-- More products can be added dynamically -->
+            <?php 
+              $total=0;
+              if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0)
+              {
+                foreach($_SESSION['cart'] as $val)
+                {
+                  $total_price=$val['qty'] * $val['price'];
+                  $total += $total_price;
+                  echo '<tr>
+                          <td><img src="product_img/'.$val['img'].'" alt="Product" class="product-img" style="width:60px;height:60px;object-fit:cover;" /></td>
+                          <td>'.$val['nm'].'</td>
+                          <td class="price">₹'.$val['price'].'</td>
+                          <td>
+                            <form action="addtocart.php" method="post" class="d-flex align-items-center">
+                              <input type="hidden" name="update_qty" value="1">
+                              <input type="hidden" name="pid" value="'.$val['id'].'">
+                              <div class="quantity-buttons d-flex">
+                                <button type="button" class="btn btn-outline-secondary btn-sm quantity-minus">-</button>
+                                <input type="text" name="qty" class="form-control form-control-sm quantity-input text-center mx-1" value="'.$val['qty'].'" style="width: 50px;">
+                                <button type="button" class="btn btn-outline-secondary btn-sm quantity-plus">+</button>
+                                <button type="submit" class="btn btn-sm btn-success ms-2">Update</button>
+                              </div>
+                            </form>
+                          </td>
+                          <td class="item-total">₹'.$total_price.'</td>
+                          <td><a href="addtocart.php?rid='.$val['id'].'" class="text-danger"><i class="fa fa-trash"></i></a></td>
+                        </tr>';
+                }
+              } else {
+                echo '<tr><td colspan="6" class="text-center">Your cart is empty</td></tr>';
+              }
+            ?>
           </tbody>
         </table>
       </div>
@@ -42,16 +59,16 @@
 
     <!-- Cart Summary -->
     <div class="col-lg-4">
-      <div class="cart-summary">
+      <div class="cart-summary p-3 border rounded">
         <h5>Cart Summary</h5>
         <hr />
         <div class="d-flex justify-content-between">
           <span>Subtotal</span>
-          <span id="subtotal">$20.00</span>
+          <span id="subtotal">₹<?php echo $total; ?></span>
         </div>
         <div class="d-flex justify-content-between mt-2">
           <span>Total</span>
-          <span id="total">$20.00</span>
+          <span id="total">₹<?php echo $total; ?></span>
         </div>
         <button class="btn btn-primary w-100 mt-4">Proceed to Checkout</button>
       </div>
@@ -79,16 +96,13 @@
       }
     });
 
-    // Optional: Prevent non-numeric input
+    // Prevent non-numeric input
     $(document).on('input', '.quantity-input', function () {
       const value = $(this).val().replace(/[^0-9]/g, '');
       $(this).val(value || 1);
     });
   });
 </script>
-
-
-
 
 <?php
     include("inc/footer.php");
