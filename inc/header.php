@@ -84,18 +84,19 @@
                               <li> <a href="product.php">product</a> </li>
                               <li> <a href="contact.php">Contact</a> </li>
                               <li> <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a> </li>
-                              <li><a href="#" id="search-trigger"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-                            
+                              <li> <a onclick="openSearch()" href="#" ><i class="fas fa-search"></i></a> </li>
                            </ul>
-                           <div id="search-box" style="display: none;">
-                                 <input type="text" placeholder="Search..." />
-                              </div>
                         </nav>
                      </div>
                   </div>
                </div>
-              
-
+                <div id="searchOverlay" class="search-overlay">
+                  <span class="close-btn" onclick="closeSearch()">&times;</span>
+                  <form class="search-container" action="search.php" method="get">
+                     <input type="text" name="q" placeholder="Search products..." required>
+                     <button type="submit"><i class="fas fa-search"></i></button>
+                  </form>
+               </div>
                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
                   <li><a class="buy" href="login.php">Login</a></li>
                </div>
@@ -120,14 +121,26 @@
     });
   });
 
-  document.getElementById("search-trigger").addEventListener("click", function (e) {
-    e.preventDefault(); // Prevent link behavior
-    const box = document.getElementById("search-box");
-    if (box.style.display === "none" || box.style.display === "") {
-      box.style.display = "block";
-    } else {
-      box.style.display = "none";
-    }
-  });
+  function openSearch() {
+  document.getElementById("searchOverlay").classList.add("active");
+  setTimeout(() => {
+    document.querySelector("#searchOverlay input").focus();
+  }, 300);
+}
+
+function closeSearch() {
+  document.getElementById("searchOverlay").classList.remove("active");
+}
+
+// Close on ESC key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closeSearch();
+  }
+});
 </script>
+
+
+
+
 
