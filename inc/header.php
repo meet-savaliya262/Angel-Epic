@@ -90,10 +90,11 @@
                      </div>
                   </div>
                </div>
+                     
                 <div id="searchOverlay" class="search-overlay">
                   <span class="close-btn" onclick="closeSearch()">&times;</span>
-                  <form class="search-container" action="search.php" method="get">
-                     <input type="text" name="q" placeholder="Search products..." required>
+                  <form class="search-container" action="search_products.php" method="get">
+                     <input type="text" name="s" placeholder="Search Products..." required>
                      <button type="submit"><i class="fas fa-search"></i></button>
                   </form>
                </div>

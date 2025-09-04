@@ -2617,3 +2617,55 @@ text-align: center;
 }
 
 /* end search overlay */
+
+/* product not found */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin: 40px auto;
+  max-width: 500px;
+}
+
+.empty-state .empty-icon {
+  font-size: 60px;
+  color: #e63946; /* theme red */
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.theme-btn {
+  background: #e63946;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.theme-btn:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(200, 35, 51, 0.5);
+  color: #fff;
+}
