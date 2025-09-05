@@ -26,7 +26,17 @@
                   $p_res = mysqli_query($link, $p_q);
                   if (mysqli_num_rows($p_res) == 0) 
                   {
-                     echo "<p>No products found.</p>";
+                    echo '<div class="empty-state">
+                                <div class="empty-icon">
+                                    <i class="fa-solid fa-box-open"></i>
+                                </div>
+                                <h3>No Products Found</h3>
+                                <p>We couldn’t find any products matching your filters.<br>
+                                    Try adjusting your search or browse all products.</p>
+                                <a href="product.php" class="btn theme-btn">
+                                    <i class="fa-solid fa-store"></i> Browse All Products
+                                </a>
+                            </div>';
                   } 
                   else 
                   {

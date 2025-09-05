@@ -41,7 +41,6 @@
 
         if ($sta == 0) {
       ?>
-          <!-- ✅ Add to Cart Form -->
           <form action="addtocart.php" method="post">
             <div class="form-group row align-items-center">
               <label class="col-sm-3 col-form-label"><strong>Quantity</strong></label>
@@ -54,7 +53,6 @@
               </div>
             </div>
 
-            <!-- ✅ hidden product id -->
             <input type="hidden" name="pid" value="<?php echo $row['p_id']; ?>">
 
             <button type="submit" class="btn btn-add btn-block mt-3">Add to Cart</button>

@@ -70,7 +70,7 @@
           <span>Total</span>
           <span id="total">₹<?php echo $total; ?></span>
         </div>
-        <button class="btn btn-primary w-100 mt-4">Proceed to Checkout</button>
+        <a href="checkout.php" class="btn btn-primary w-100 mt-4">Proceed to Checkout</a>
       </div>
     </div>
   </div>

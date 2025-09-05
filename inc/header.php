@@ -80,8 +80,8 @@
                         <nav class="main-menu">
                            <ul class="menu-area-main">
                               <li class="active"> <a href="index.php">Home</a> </li>
-                              <li> <a href="about.php">About</a> </li>
                               <li> <a href="product.php">product</a> </li>
+                              <li> <a href="about.php">About</a> </li>
                               <li> <a href="contact.php">Contact</a> </li>
                               <li> <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a> </li>
                               <li> <a onclick="openSearch()" href="#" ><i class="fas fa-search"></i></a> </li>
