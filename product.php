@@ -23,7 +23,7 @@
                   include("inc/config.php");
 
                   // Pagination setup
-                  $limit = 4; // ek page ma 9 product
+                  $limit = 4; // ek page ma 4 product
                   $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
                   if ($page < 1) $page = 1;
                   $offset = ($page - 1) * $limit;
@@ -73,37 +73,38 @@
             </div>
 
 
-               <!-- Pagination -->
-        <?php 
-if ($total_pages > 1) {
-    echo '<nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center mt-4">';
+ <!-- Pagination -->
+<?php 
+    if ($total_pages > 1) 
+    {
+        echo '<nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">';
 
-    // Prev
-    $prev_disabled = ($page <= 1) ? ' disabled' : '';
-    $prev_page = ($page > 1) ? $page - 1 : 1;
-    echo '<li class="page-item'.$prev_disabled.'">
-            <a class="page-link" href="?page='.$prev_page.'">Previous</a>
-          </li>';
+        // Prev
+        $prev_disabled = ($page <= 1) ? ' disabled' : '';
+        $prev_page = ($page > 1) ? $page - 1 : 1;
+        echo '<li class="page-item'.$prev_disabled.'">
+                <a class="page-link" href="?page='.$prev_page.'">Previous</a>
+            </li>';
 
-    // Numbers
-    for ($i = 1; $i <= $total_pages; $i++) {
-        $active = ($page == $i) ? ' active' : '';
-        echo '<li class="page-item'.$active.'">
-                <a class="page-link" href="?page='.$i.'">'.$i.'</a>
-              </li>';
+        // Numbers
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $active = ($page == $i) ? ' active' : '';
+            echo '<li class="page-item'.$active.'">
+                    <a class="page-link" href="?page='.$i.'">'.$i.'</a>
+                </li>';
+        }
+
+        // Next
+        $next_disabled = ($page >= $total_pages) ? ' disabled' : '';
+        $next_page = ($page < $total_pages) ? $page + 1 : $total_pages;
+        echo '<li class="page-item'.$next_disabled.'">
+                <a class="page-link" href="?page='.$next_page.'">Next</a>
+            </li>';
+
+        echo '</ul>
+            </nav>';
     }
-
-    // Next
-    $next_disabled = ($page >= $total_pages) ? ' disabled' : '';
-    $next_page = ($page < $total_pages) ? $page + 1 : $total_pages;
-    echo '<li class="page-item'.$next_disabled.'">
-            <a class="page-link" href="?page='.$next_page.'">Next</a>
-          </li>';
-
-    echo '</ul>
-          </nav>';
-}
 ?> 
 
         </div>
