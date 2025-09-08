@@ -1,7 +1,10 @@
 <?php session_start();
-    include("inc/header.php");
+if (!isset($_SESSION['admin']['status']))
+  {
+    header("location:login.php");
+  }
+  include("inc/header.php");
 ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +27,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item"><a class="nav-link" data-widget="navbar-search" href="#" role="button">Hi,Akshay</a></li>
-      <li class="nav-item"><a class="nav-link" data-widget="navbar-search" href="logout.php" role="button">Log Out</a></li>
+      <li class="nav-item"><a class="nav-link" href="logout.php" role="button">Log Out</a></li>
     </ul>
   </nav>
   <!-- /.navbar -->
