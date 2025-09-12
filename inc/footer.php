@@ -16,20 +16,20 @@
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
                      <h3>conatct us</h3>
-                     <span>123 Second Street Fifth Avenue,<br>
-                       Manhattan, New York<br>
-                        +987 654 3210</span>
+                     <span>Latipur Villege<br>
+                       Jamanagar,gujarat<br>
+                        +91 95375 86761</span>
                   </div>
                </div>
                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
                      <h3>ADDITIONAL LINKS</h3>
                      <ul class="lik">
-                         <li> <a href="#">About us</a></li>
-                         <li> <a href="#">Terms and conditions</a></li>
-                         <li> <a href="#">Privacy policy</a></li>
+                         <li> <a href="about.php">About us</a></li>
+                         <li> <a href="about.php">Terms and conditions</a></li>
+                         <li> <a href="contact.php">Privacy policy</a></li>
                          <li> <a href="#">News</a></li>
-                          <li> <a href="#">Contact us</a></li>
+                          <li> <a href="contact.php">Contact us</a></li>
                      </ul>
                   </div>
                </div>
@@ -53,7 +53,7 @@
             </div>
          </div>
             <div class="copyright">
-               <p>Copyright 2019 All Right Reserved By <a href="https://html.design/">Free html Templates</a> Distributed By <a href="https://themewagon.com">ThemeWagon </a></p>
+               <p>Copyright <?php  echo date('Y'); ?> All Right Reserved By & Distributed By Meet Savaliya</p>
             </div>
          
       </div>

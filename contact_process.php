@@ -25,7 +25,7 @@ if(!empty($_POST))
     } 
     else 
     {
-        include("include/config.php");
+        include("inc/config.php");
         $t = time();
         $q = "INSERT INTO contact(c_fnm,c_email,c_phone,c_msg,c_time) 
               VALUES('".$fnm."','".$email."','".$phone."','".$msg."','".$t."')";

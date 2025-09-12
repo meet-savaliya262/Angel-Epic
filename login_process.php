@@ -27,8 +27,8 @@
             }
             else
             {
-                $_SESSION['client']['email']=$row['u_email'];
-                $_SESSION['client']['id']=$row['u_id'];
+                $_SESSION['client']['email']=$row['s_email'];
+                $_SESSION['client']['id']=$row['s_id'];
                 $_SESSION['client']['status']=true;
                 header("location:index.php");
             }

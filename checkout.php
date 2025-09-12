@@ -1,18 +1,17 @@
-<?php session_start();
+<?php 
 
-  error_reporting(0);
-  if(! isset($_SESSION['client']['status']))
-  {
+if(! isset($_SESSION['client']['status']))
+{
       header("location:login.php");
       exit;
-  }
-  else if(empty($_SESSION['cart']))
-  {
-      header("location:products.php");
-      exit;
-  }
-
-  include("inc/header.php");
+}
+else if(empty($_SESSION['cart']))
+{
+  header("location:products.php");
+  exit;
+}
+      
+include("inc/header.php");
 
 ?>
 

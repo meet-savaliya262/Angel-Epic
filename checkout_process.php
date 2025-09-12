@@ -108,8 +108,8 @@ if((!empty($_POST) && isset($_SESSION['client']['status'])))
 
       <script>
         setTimeout(function(){
-          window.location.href = "orders.php?orderid=<?php echo $order_id; ?>&key=<?php echo $key; ?>";
-        }, 7000);
+          window.location.href = "orders.php";
+        }, 5000);
       </script>
     </body>
     </html>
@@ -118,7 +118,7 @@ if((!empty($_POST) && isset($_SESSION['client']['status'])))
 }
 else 
 {
-    header("location:index.php");
+    header("location:products.php");
     exit;
 }
 ?>

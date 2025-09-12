@@ -1,3 +1,6 @@
+<?php
+   session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -57,11 +60,7 @@
                         </ul>
                     </div>
                   </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                       <div class="top-box">
-                        <p>long established fact that a reader will be </p>
-                    </div>
-                  </div>
+                 
                </div>
             </div>
          </div>
@@ -78,14 +77,40 @@
                   <div class="menu-area">
                      <div class="limit-box">
                         <nav class="main-menu">
-                           <ul class="menu-area-main">
-                              <li class="active"> <a href="index.php">Home</a> </li>
-                              <li> <a href="product.php">product</a> </li>
-                              <li> <a href="about.php">About</a> </li>
-                              <li> <a href="contact.php">Contact</a> </li>
-                              <li> <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a> </li>
-                              <li> <a onclick="openSearch()" href="#" ><i class="fas fa-search"></i></a> </li>
-                           </ul>
+                           <?php
+                              $currentPage = basename($_SERVER['PHP_SELF']); // current page name like "product.php"
+                           ?>
+
+                              <ul class="menu-area-main">
+                                 <li class="<?= ($currentPage == 'index.php') ? 'active' : '' ?>">
+                                    <a href="index.php">Home</a>
+                                 </li>
+
+                                 <li class="<?= ($currentPage == 'product.php') ? 'active' : '' ?>">
+                                    <a href="product.php">Product</a>
+                                 </li>
+
+                                 <li class="<?= ($currentPage == 'about.php') ? 'active' : '' ?>">
+                                    <a href="about.php">About</a>
+                                 </li>
+
+                                 <li class="<?= ($currentPage == 'contact.php') ? 'active' : '' ?>">
+                                    <a href="contact.php">Contact</a>
+                                 </li>
+
+                                 <li class="<?= ($currentPage == 'orders.php') ? 'active' : '' ?>">
+                                    <a href="orders.php">Orders</a>
+                                 </li>
+
+                                 <li class="<?= ($currentPage == 'cart.php') ? 'active' : '' ?>">
+                                    <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                                 </li>
+
+                                 <li>
+                                    <a onclick="openSearch()" href="#"><i class="fa-solid fa fa-search"></i></a>
+                                 </li>
+                              </ul>
+
                         </nav>
                      </div>
                   </div>
@@ -98,8 +123,18 @@
                      <button type="submit"><i class="fas fa-search"></i></button>
                   </form>
                </div>
+
+               
                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
-                  <li><a class="buy" href="login.php">Login</a></li>
+                  <li>
+                     <?php
+                        if (isset($_SESSION['client']['status']) && $_SESSION['client']['status'] === true) {
+                           echo '<a class="buy" href="logout.php">Logout</a>';
+                        } else {
+                           echo '<a class="buy" href="login.php">Login</a>';
+                        }
+                     ?>
+                  </li>
                </div>
             </div>
          </div>

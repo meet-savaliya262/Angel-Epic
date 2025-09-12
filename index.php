@@ -272,4 +272,4 @@
 <?php
       include("inc/footer.php");
 
-?>0
+?>

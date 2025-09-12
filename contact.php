@@ -1,5 +1,5 @@
-<?php session_start();
-    include("include/header.php");
+<?php 
+    include("inc/header.php");
 
     if(isset($_SESSION['status']) && $_SESSION['status']=="success") 
     {
@@ -23,7 +23,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- contact -->
