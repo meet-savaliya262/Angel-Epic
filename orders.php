@@ -1,12 +1,12 @@
 <?php
 
+include("inc/header.php");
+include("inc/config.php");
 
 if(!isset($_SESSION['client']['id'])){
    header("Location:login.php");
    exit;
 }
-include("inc/header.php");
-include("inc/config.php");
 
 
 $uid = $_SESSION['client']['id'];
@@ -49,7 +49,7 @@ $res = mysqli_query($link, $q);
                 <div>
                     <strong>Order Date:</strong> <?php echo date("d M Y", strtotime($row['o_time'])); ?>
                 </div>
-                <span class="badge bg-dark text-white"><?php echo $row['o_payment']; ?></span>
+                <span class="badge bg-dark text-white"><?php echo $row['o_status']; ?></span>
             </div>
 
             <div class="card-body">
@@ -60,10 +60,10 @@ $res = mysqli_query($link, $q);
                         <div class="card h-100 border-0 shadow-sm">
                            <img src="product_img/<?php echo $p_row['p_img']; ?>" 
                            class="card-img-top" 
-                           alt="<?php echo $p_row['p_nm']; ?>" 
-                           style="height:200px; object-fit:cover;">
+                           alt="<?php echo $p_row['p_nm']; ?> " 
+                           style="height:300px; object-fit:cover;">
                            <div class="card-body">
-                              <h5 class="card-title"><?php echo $p_row['p_nm']; ?></h5>
+                              <h5 class="card-title"><b><?php echo $p_row['p_nm']; ?></b></h5>
                               <p class="card-text text-muted"><?php echo $p_row['p_description']; ?></p>
                            </div>
                            <div class="card-footer bg-white border-top">

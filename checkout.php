@@ -1,4 +1,5 @@
 <?php 
+include("inc/header.php");
 
 if(! isset($_SESSION['client']['status']))
 {
@@ -11,7 +12,6 @@ else if(empty($_SESSION['cart']))
   exit;
 }
       
-include("inc/header.php");
 
 ?>
 
