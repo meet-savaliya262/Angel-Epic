@@ -1,5 +1,9 @@
-<?php 
-    include("inc/header.php");
+<?php session_start();
+if (!isset($_SESSION['admin']['status']))
+  {
+    header("location:login.php");
+  }
+  include("inc/header.php");
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -31,14 +35,22 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <?php
+                  include("../inc/config.php");
+
+                  $order_count_q = "SELECT COUNT(*) AS total_orders FROM userorder";
+                  $order_count_res = mysqli_query($link, $order_count_q);
+                  $order_count = mysqli_fetch_assoc($order_count_res)['total_orders'];
+                ?>
+
+                  <h3><?php echo $order_count; ?></h3>
 
                 <p>New Orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="order_list.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -61,14 +73,21 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <?php
+
+                  $uq = "SELECT COUNT(*) AS total_users FROM signup";
+                  $ures = mysqli_query($link, $uq);
+                  $ucount = mysqli_fetch_assoc($ures)['total_users'];
+                ?>
+
+                  <h3><?php echo $ucount; ?></h3>
 
                 <p>User Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="Register_users.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

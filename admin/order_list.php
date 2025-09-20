@@ -1,4 +1,8 @@
-<?php 
+<?php session_start();
+if (!isset($_SESSION['admin']['status']))
+{
+  header("location:login.php");
+}
 include("inc/header.php");
 include("../inc/config.php");
 

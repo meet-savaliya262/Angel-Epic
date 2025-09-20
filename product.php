@@ -1,6 +1,6 @@
-<?php
-include("inc/header.php");
-?>
+<?php include("inc/header.php"); ?>
+<?php include("inc/config.php"); ?>
+
 
 <div class="brand_color">
     <div class="container">
@@ -14,104 +14,97 @@ include("inc/header.php");
     </div>
 </div>
 
-<!-- Product Section -->
 <div class="product-bg">
     <div class="product-bg-white">
         <div class="container">
             <div class="row">
 
-                <!-- Sidebar Filters (Desktop) -->
-                <div class="col-lg-3 d-none d-lg-block">
-                    <div class="filter-box p-3 shadow-sm rounded">
-                        <h4>Filter Products</h4>
-                        <hr>
-                        <label>Category</label>
-                        <select id="category" class="form-select mb-2">
-                            <option value="">All Categories</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="fashion">Fashion</option>
-                            <option value="home">Home & Living</option>
-                        </select>
+                <!-- Filter Toggle Button (Mobile Only) -->
+                <div class="col-12">
+                    <button class="btn btn-dark btn-block filter-toggle-btn" onclick="toggleFilter()"><i class="fas fa-filter mr-3"></i>Filters</button>
+                </div>
 
-                        <label>Brand</label>
-                        <select id="brand" class="form-select mb-2">
-                            <option value="">All Brands</option>
-                            <option value="nike">Nike</option>
-                            <option value="samsung">Samsung</option>
-                            <option value="apple">Apple</option>
-                        </select>
+                <!-- Filter Sidebar -->
+                <div class="col-lg-3 col-md-4 mb-4" id="mobileFilter">
+                    <div class="filter-box">
+                        <h5 class="mb-3">Filter Products</h5>
+                        <form method="GET" action="product.php">
+                            <div class="mb-4">
+                                <h6>Category</h6>
+                                <select name="cid" class="form-control">
+                                    <option value="">-- Select Category --</option>
+                                    <?php
+                                    $cat_q = "SELECT * FROM category WHERE cat_status = 1";
+                                    $cat_res = mysqli_query($link, $cat_q);
+                                    while ($cat_row = mysqli_fetch_assoc($cat_res)) {
+                                        $selected = (isset($_GET['cid']) && $_GET['cid'] == $cat_row['cat_id']) ? "selected" : "";
+                                        echo '<option value="'.$cat_row['cat_id'].'" '.$selected.'>'.$cat_row['cat_nm'].'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
-                        <label>Price</label>
-                        <select id="price" class="form-select mb-2">
-                            <option value="">Any Price</option>
-                            <option value="0-500">₹0 – ₹500</option>
-                            <option value="500-1000">₹500 – ₹1000</option>
-                            <option value="1000-5000">₹1000 – ₹5000</option>
-                        </select>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="min_price">Min Price</label>
+                                    <input type="number" class="form-control" id="min_price" name="min_price" placeholder="₹0" min="0" value="<?php echo isset($_GET['min_price']) ? $_GET['min_price'] : ''; ?>">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="max_price">Max Price</label>
+                                    <input type="number" class="form-control" id="max_price" name="max_price" placeholder="₹2000" min="0" value="<?php echo isset($_GET['max_price']) ? $_GET['max_price'] : ''; ?>">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark btn-block">Apply Filter</button>
+                        </form>
                     </div>
                 </div>
 
-                <!-- Mobile Filter Toggle -->
-                <div class="col-12 d-lg-none mb-3 text-end">
-                    <button class="btn btn-outline-primary w-100" onclick="toggleFilter()">Show/Hide Filters</button>
-                </div>
-
-                <!-- Mobile Filters -->
-                <div class="col-12 d-lg-none" id="mobileFilter" style="display:none;">
-                    <div class="filter-box p-3 shadow-sm rounded mb-3">
-                        <h4>Filter Products</h4>
-                        <label>Category</label>
-                        <select id="category-mobile" class="form-select mb-2">
-                            <option value="">All Categories</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="fashion">Fashion</option>
-                            <option value="home">Home & Living</option>
-                        </select>
-
-                        <label>Brand</label>
-                        <select id="brand-mobile" class="form-select mb-2">
-                            <option value="">All Brands</option>
-                            <option value="nike">Nike</option>
-                            <option value="samsung">Samsung</option>
-                            <option value="apple">Apple</option>
-                        </select>
-
-                        <label>Price</label>
-                        <select id="price-mobile" class="form-select mb-2">
-                            <option value="">Any Price</option>
-                            <option value="0-500">₹0 – ₹500</option>
-                            <option value="500-1000">₹500 – ₹1000</option>
-                            <option value="1000-5000">₹1000 – ₹5000</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Products List -->
-                <div class="col-lg-9 col-md-12">
+                <!-- Products Grid -->
+                <div class="col-lg-9 col-md-8">
                     <div class="row">
                         <?php
-                        include("inc/config.php");
-
                         // Pagination
                         $limit = 4;
                         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
                         if ($page < 1) $page = 1;
                         $offset = ($page - 1) * $limit;
 
-                        // Products query
-                        $p_q = "SELECT * FROM products WHERE p_status = 1 LIMIT $offset, $limit";
+                        $conditions = "p_status = 1";
+                        if (!empty($_GET['cid'])) 
+                        {
+                            $cid = (int)$_GET['cid'];
+                            $conditions .= " AND p_cat = $cid";
+                        }
+                        if (isset($_GET['min_price']) && is_numeric($_GET['min_price'])) 
+                        {
+                            $min_price = (int)$_GET['min_price'];
+                            $conditions .= " AND p_price >= $min_price";
+                        }
+                        if (isset($_GET['max_price']) && is_numeric($_GET['max_price'])) 
+                        {
+                            $max_price = (int)$_GET['max_price'];
+                            $conditions .= " AND p_price <= $max_price";
+                        }
+
+                        // Product query
+                        $p_q = "SELECT * FROM products WHERE $conditions LIMIT $offset, $limit";
                         $p_res = mysqli_query($link, $p_q);
 
-                        if (mysqli_num_rows($p_res) == 0) {
+                        if (mysqli_num_rows($p_res) == 0) 
+                        {
                             echo '<div class="text-center w-100 p-5">
-                                    <i class="fa-solid fa-box-open fa-3x mb-3"></i>
+                                    <i class="fa fa-box-open fa-3x mb-3"></i>
                                     <h3>No Products Found</h3>
                                     <p>We couldn’t find any products matching your filters.</p>
                                   </div>';
-                        } else {
-                            while ($row = mysqli_fetch_assoc($p_res)) {
+                        } 
+                        else 
+                        {
+                            while ($row = mysqli_fetch_assoc($p_res)) 
+                            {
                                 echo '<div class="col-6 col-md-4 col-lg-4 mb-4">
-                                        <div class="product-box shadow-sm p-2 rounded h-100">
+                                        <div class="product-box bg-white p-3 rounded shadow-sm h-100">
                                             <a href="product-single.php?pid='.$row['p_id'].'" class="text-decoration-none text-dark">
                                                 <img src="product_img/'.$row['p_img'].'" class="img-fluid mb-2" style="height:200px;object-fit:cover;">
                                                 <h5>'.$row['p_nm'].'</h5>
@@ -126,30 +119,27 @@ include("inc/header.php");
 
                     <!-- Pagination -->
                     <?php 
-                    $count_q = "SELECT COUNT(*) as total FROM products WHERE p_status = 1";
+                    $count_q = "SELECT COUNT(*) as total FROM products WHERE $conditions";
                     $count_res = mysqli_query($link, $count_q);
                     $total_products = mysqli_fetch_assoc($count_res)['total'];
                     $total_pages = ceil($total_products / $limit);
 
-                    if($total_pages > 1){
+                    if ($total_pages > 1) 
+                    {
                         echo '<nav aria-label="Page navigation"><ul class="pagination justify-content-center mt-3">';
-
-                        // Previous
                         $prev_page = ($page > 1) ? $page - 1 : 1;
-                        $prev_disabled = ($page <= 1) ? ' disabled' : '';
-                        echo '<li class="page-item'.$prev_disabled.'"><a class="page-link" href="?page='.$prev_page.'">Previous</a></li>';
+                        $next_page = ($page < $total_pages) ? $page + 1 : $total_pages;
 
-                        // Page numbers
-                        for($i=1; $i<=$total_pages; $i++){
-                            $active = ($page == $i) ? ' active' : '';
-                            echo '<li class="page-item'.$active.'"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
+                        $prev_query = http_build_query(array_merge($_GET, ['page' => $prev_page]));
+                        echo '<li class="page-item'.($page <= 1 ? ' disabled' : '').'"><a class="page-link" href="?'.$prev_query.'">Previous</a></li>';
+
+                        for ($i = 1; $i <= $total_pages; $i++) {
+                            $query_string = http_build_query(array_merge($_GET, ['page' => $i]));
+                            echo '<li class="page-item'.($page == $i ? ' active' : '').'"><a class="page-link" href="?'.$query_string.'">'.$i.'</a></li>';
                         }
 
-                        // Next
-                        $next_page = ($page < $total_pages) ? $page + 1 : $total_pages;
-                        $next_disabled = ($page >= $total_pages) ? ' disabled' : '';
-                        echo '<li class="page-item'.$next_disabled.'"><a class="page-link" href="?page='.$next_page.'">Next</a></li>';
-
+                        $next_query = http_build_query(array_merge($_GET, ['page' => $next_page]));
+                        echo '<li class="page-item'.($page >= $total_pages ? ' disabled' : '').'"><a class="page-link" href="?'.$next_query.'">Next</a></li>';
                         echo '</ul></nav>';
                     }
                     ?>
@@ -160,7 +150,6 @@ include("inc/header.php");
     </div>
 </div>
 
-<!-- JS for Mobile Filter -->
 <script>
 function toggleFilter() {
     const filter = document.getElementById("mobileFilter");
@@ -168,6 +157,4 @@ function toggleFilter() {
 }
 </script>
 
-<?php
-include("inc/footer.php");
-?>
+<?php include("inc/footer.php"); ?>

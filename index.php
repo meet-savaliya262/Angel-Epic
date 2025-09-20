@@ -163,7 +163,7 @@
                <?php
 
                   // Pagination setup
-                  $limit = 4; // ek page ma 4 product
+                  $limit = 4; // ek page ma 4 product dekhase
                   $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
                   if ($page < 1) $page = 1;
                   $offset = ($page - 1) * $limit;

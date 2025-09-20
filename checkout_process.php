@@ -79,10 +79,6 @@ if((!empty($_POST) && isset($_SESSION['client']['status'])))
         '".$address_line2."','".$city."','".$state."','".$pincode."','".$phone."','".$email."',
         '".$pid."','".$uid."','".$key."','".$payment."','".$t."')";
         
-        if(!mysqli_query($link, $q)) {
-            die("MySQL Error: " . mysqli_error($link));
-        }
-        
         $order_id = mysqli_insert_id($link);
         unset($_SESSION['cart']);
 ?>
@@ -119,7 +115,7 @@ if((!empty($_POST) && isset($_SESSION['client']['status'])))
 }
 else 
 {
-    header("location:products.php");
+    header("location:product.php");
     exit;
 }
 ?>
