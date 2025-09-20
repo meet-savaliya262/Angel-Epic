@@ -56,7 +56,6 @@ $res = mysqli_query($link, $q);
                     <th>Products</th>
                     <th>Address</th>
                     <th>Contact No</th>
-                    <th>Total</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -98,7 +97,6 @@ $res = mysqli_query($link, $q);
                                        style="width:60px;height:60px;object-fit:cover;border-radius:4px;margin-right:10px;">
                                   <div>
                                     <strong>'.$p_row['p_nm'].'</strong><br>
-                                    <small>₹'.$p_row['p_price'].'</small>
                                   </div>
                                 </div>';
                           $index++;
@@ -107,7 +105,6 @@ $res = mysqli_query($link, $q);
                     echo '</td>
                             <td>'.$o_row['o_address_line1'].'<br>'.$o_row['o_city'].', '.$o_row['o_state'].'</td>
                             <td>'.$o_row['o_phone'].'</td>
-                            <td><strong>₹'.$total.'</strong></td>
                             <td>
                                 <select class="order-status" data-id="'.$o_row['o_id'].'">
                                     <option value="Pending" '.($o_row['o_status']=="Pending" ? "selected" : "").'>Pending</option>
@@ -132,26 +129,34 @@ $res = mysqli_query($link, $q);
   </section>
 </div>
 
+<script src="plugins/jquery/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    $('.order-status').change(function(){
+    $(".order-status").on("change", function(){
         var status = $(this).val();
-        var orderId = $(this).data('id');
+        var order_id = $(this).data("id");
 
         $.ajax({
-            url: 'order_update_status.php', 
-            method: 'POST',
-            data: {id: orderId, status: status},
+            url: "order_update_status.php",
+            type: "POST",
+            data: {id: order_id, status: status},
             success: function(response){
-                alert('Order status updated to ' + status);
+                console.log("Server Response:", response);
+                if (response.includes("success")) {
+                    alert("Order status updated successfully!");
+                } else {
+                    alert("Error: " + response);
+                }
             },
-            error: function(){
-                alert('Error updating status');
+            error: function(xhr)
+            {
+                alert("AJAX Error: " + xhr.status);
             }
         });
     });
 });
 </script>
+
 
 
 <?php include("inc/footer.php"); ?>

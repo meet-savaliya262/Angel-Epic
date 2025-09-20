@@ -104,9 +104,9 @@
                             while ($row = mysqli_fetch_assoc($p_res)) 
                             {
                                 echo '<div class="col-6 col-md-4 col-lg-4 mb-4">
-                                        <div class="product-box bg-white p-3 rounded shadow-sm h-100">
-                                            <a href="product-single.php?pid='.$row['p_id'].'" class="text-decoration-none text-dark">
-                                                <img src="product_img/'.$row['p_img'].'" class="img-fluid mb-2" style="height:200px;object-fit:cover;">
+                                        <div class="product-box">
+                                            <a href="product-single.php?pid='.$row['p_id'].'">
+                                                <img src="product_img/'.$row['p_img'].'" style="height:200px;object-fit:cover;">
                                                 <h5>'.$row['p_nm'].'</h5>
                                                 <span>₹'.$row['p_price'].'</span>
                                             </a>
@@ -115,6 +115,7 @@
                             }
                         }
                         ?>
+                                              
                     </div>
 
                     <!-- Pagination -->
