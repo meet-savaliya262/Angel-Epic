@@ -57,6 +57,35 @@
       </section>
 
 
+<!-- latest products -->
+<div class="container my-4">
+<div class="title mt-5">
+   <h2>Latest <strong class="black">Products</strong></h2>
+</div>
+<div class="owl-carousel owl-theme">
+
+   <?php
+       include("inc/config.php");
+
+      $q="select * from latest where po_status=1";
+      $res=mysqli_query($link,$q);
+      while($row=mysqli_fetch_assoc($res))
+      {
+         echo '<div class="item">
+                  <a href="#">
+                     <div class="product-card">
+                     <img src="latest_img/'.$row['po_img'].'" alt="Product 1">
+                     <div class="product-title">'.$row['po_nm'].'</div>
+                     <div class="product-description">'.$row['po_description'].'</div>
+                     </div>
+                  </a>
+            </div>';
+      }
+    ?>
+
+   
+  </div>
+</div>
 
 <!-- CHOOSE  -->
       <div class="whyschose">
@@ -114,14 +143,24 @@
 <!-- end CHOOSE -->
 
 
+
+
+
+
+
+
+
+<div class="title mt-5">
+   <h2>Our <strong class="black">Products</strong></h2>
+</div>
+
       <!-- our product -->
    <div class="product-bg">
       <div class="product-bg-white">
         <div class="container">
             <div class="row">
-
+               
                <?php
-                  include("inc/config.php");
 
                   // Pagination setup
                   $limit = 4; // ek page ma 4 product
@@ -267,7 +306,6 @@
          </div>
       </div>
       <!-- end service -->
-      
       
 <?php
       include("inc/footer.php");

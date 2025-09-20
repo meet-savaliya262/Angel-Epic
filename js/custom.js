@@ -370,3 +370,18 @@ $(function () {
 
 
 });
+
+
+ $(".owl-carousel").owlCarousel({
+    loop: true,            // Infinite loop
+    margin: 15,            // Space between items
+    autoplay: true,        // Auto slide
+    autoplayTimeout: 2000, // Slide speed
+    autoplayHoverPause: true,
+    smartSpeed: 700,       // Smooth animation
+    responsive:{
+      0:{ items:1 },
+      768:{ items:3 },
+      1200:{ items:4 }
+    }
+  });
