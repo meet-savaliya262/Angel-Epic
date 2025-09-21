@@ -460,10 +460,17 @@ a.readmore_bt {
 .logo {
 	float: left;
 }
+.anglelogo{
+	height:150px;
+	width:150px;
+	margin-bottom:-50px;
+	background: none;
+}
 
 nav.main-menu {
 	float: right;
 	margin-left: 0;
+	margin-bottom: -20px;
 }
 
 .menu-area-main li:hover a,
@@ -1691,7 +1698,7 @@ font-size: 18px;
 }
 .header {
 	background: #fff;
-	padding-bottom: 35px;
+	padding-bottom: 5px;
 }
 
 .logo a {
