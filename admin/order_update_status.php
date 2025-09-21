@@ -12,6 +12,6 @@ if (!empty($_POST['id']) && !empty($_POST['status'])) {
         echo "error: " . mysqli_error($link);
     }
 } else {
-    echo "invalid";
+    header("location:order_list.php");
 }
 ?>

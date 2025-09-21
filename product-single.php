@@ -1,19 +1,26 @@
 <?php
-    include("inc/header.php");
-    include("inc/config.php");
+include("inc/config.php");
 
-    if (isset($_GET['pid'])) {
-        $pid = $_GET['pid'];
-        $q = "SELECT * FROM products, category
-              WHERE p_cat = cat_id AND p_id = '$pid'
-              AND p_status = 1";
-        $res = mysqli_query($link, $q);
-        $row = mysqli_fetch_assoc($res);
-    } else {
-        echo "<h3>Product not found.</h3>";
-        exit;
-    }
+if (isset($_GET['pid'])) {
+  $pid = intval($_GET['pid']); 
+  $q =  "SELECT * FROM products, category
+        WHERE p_cat = cat_id AND p_id = '$pid'
+        AND p_status = 1";
+  $res = mysqli_query($link, $q);
+  
+  if(mysqli_num_rows($res) > 0){
+    $row = mysqli_fetch_assoc($res);
+  } else {
+    header("Location: product.php");
+    exit;
+  }
+} else {
+  header("Location: product.php");
+  exit;
+}
+  include("inc/header.php");
 ?>
+
 
 <div class="container py-4">
   <div class="row">

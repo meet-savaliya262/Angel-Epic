@@ -144,12 +144,6 @@
 
 
 
-
-
-
-
-
-
 <div class="title mt-5">
    <h2>Our <strong class="black">Products</strong></h2>
 </div>

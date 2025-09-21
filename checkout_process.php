@@ -70,7 +70,7 @@ if((!empty($_POST) && isset($_SESSION['client']['status'])))
     }
     $pid = json_encode($pids);
 
-    $q = "INSERT INTO `userorder`
+    $q = "INSERT INTO userorder
         (o_fnm,o_lnm,o_country,o_address_line1,o_address_line2,
         o_city,o_state,o_pincode,o_phone,o_email,o_pid,o_uid,o_order_key,
         o_payment,o_time)
@@ -79,6 +79,13 @@ if((!empty($_POST) && isset($_SESSION['client']['status'])))
         '".$address_line2."','".$city."','".$state."','".$pincode."','".$phone."','".$email."',
         '".$pid."','".$uid."','".$key."','".$payment."','".$t."')";
         
+    $res = mysqli_query($link, $q);
+
+    if(!$res){
+        // Debug purpose
+        die("MySQL Error: ".mysqli_error($link));
+    }
+
         $order_id = mysqli_insert_id($link);
         unset($_SESSION['cart']);
 ?>

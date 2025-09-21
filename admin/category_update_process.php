@@ -53,7 +53,7 @@
         }
     }
     else{
-        header("location:caterory.php");
+        header("location:category.php");
     }
 
 ?>

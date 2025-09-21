@@ -1,9 +1,21 @@
 <?php 
     include("inc/header.php");
     include("../inc/config.php");
-    $pid=$_GET['pid'];
+    if (!isset($_GET['pid']) || empty($_GET['pid'])) 
+    {
+       header("location:product.php");
+       exit;
+    }
+
+    $pid=(int)$_GET['pid'];
     $p_q="select * from products where p_id=".$pid;
     $p_res=mysqli_query($link,$p_q);
+    
+    if (!$p_res || mysqli_num_rows($p_res) == 0) 
+    {
+        echo "<p style='color:red; text-align:center;'>Sorry! Products not found!</p>";
+        exit;
+    }
     $p_row=mysqli_fetch_assoc($p_res);
     extract($p_row);
 

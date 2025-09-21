@@ -1,17 +1,18 @@
 <?php
-
-include("inc/header.php");
-include("inc/config.php");
+if (session_status() === PHP_SESSION_NONE) {
+   session_start();
+}
 
 if(!isset($_SESSION['client']['id'])){
    header("Location:login.php");
    exit;
 }
 
-
 $uid = $_SESSION['client']['id'];
 
-// Fetch user orders
+include("inc/header.php");
+include("inc/config.php");
+
 $q = "SELECT * FROM userorder WHERE o_uid='$uid' ORDER BY o_time DESC";
 $res = mysqli_query($link, $q);
 ?>
@@ -34,12 +35,14 @@ $res = mysqli_query($link, $q);
     <div class="container">
         <?php 
         if(mysqli_num_rows($res) > 0) {
-            while($row = mysqli_fetch_assoc($res)) {
+            while($row = mysqli_fetch_assoc($res)) 
+            {
                 $pids = json_decode($row['o_pid']);
                 $ids = implode(",", $pids);
                 $p_q = "SELECT * FROM products WHERE p_id IN ($ids)";
                 $p_res = mysqli_query($link, $p_q);
-                if(!$p_res){
+                if(!$p_res)
+                {
                     die("MySQL Error: " . mysqli_error($link));
                 }
         ?>
@@ -55,26 +58,32 @@ $res = mysqli_query($link, $q);
             <div class="card-body">
                
                <div class="row g-4 mt-3">
-                  <?php while($p_row = mysqli_fetch_assoc($p_res)) { ?>
-                     <div class="col-md-6 col-lg-4">
-                        <div class="card h-100 border-0 shadow-sm">
-                           <img src="product_img/<?php echo $p_row['p_img']; ?>" 
-                           class="card-img-top" 
-                           alt="<?php echo $p_row['p_nm']; ?> " 
-                           style="height:300px; object-fit:cover;">
-                           <div class="card-body">
-                              <h5 class="card-title"><b><?php echo $p_row['p_nm']; ?></b></h5>
-                              <p class="card-text text-muted"><?php echo $p_row['p_description']; ?></p>
+                  <?php 
+                     while($p_row = mysqli_fetch_assoc($p_res)) 
+                     { 
+                       echo '<div class="col-md-6 col-lg-4">
+                        <a href="product-single.php?pid='.$p_row['p_id'].'" class="text-decoration-none text-dark">
+                           <div class="card h-100 border-0 shadow-sm">
+                              <img src="product_img/'.$p_row['p_img'].'" 
+                              class="card-img-top" 
+                              alt="'.$p_row['p_nm'].'" 
+                              style="height:300px; object-fit:cover;">
+                              <div class="card-body">
+                                 <h5 class="card-title"><b>'.$p_row['p_nm'].'</b></h5>
+                                 <p class="card-text text-muted">'.$p_row['p_description'].'</p>
+                              </div>
+                              <div class="card-footer bg-white border-top">
+                                 <strong class="text-primary">₹'.$p_row['p_price'].'</strong>
+                              </div>
                            </div>
-                           <div class="card-footer bg-white border-top">
-                              <strong class="text-primary">₹<?php echo $p_row['p_price']; ?></strong>
-                           </div>
-                        </div>
-                     </div>
-                     <?php } ?>
-                     <p class="mt-3 ml-3"><b>Shipping Address:</b> <?php echo $row['o_address_line1'].' , '.$row['o_city'].' , '.$row['o_state']; ?></p>
-                     <p class="mt-3 ml-3"><b>Mobile No:</b> <?php echo $row['o_phone']; ?></p>
-                </div>
+                        </a>
+                        </div>';
+                     }
+                  ?> 
+                     
+                  </div>
+               <p class="mt-3 ml-3"><b>Shipping Address:</b> <?php echo $row['o_address_line1'].' , '.$row['o_city'].' , '.$row['o_state']; ?></p>
+               <p class="mt-3 ml-3"><b>Mobile No:</b> <?php echo $row['o_phone']; ?></p>
             </div>
         </div>
 

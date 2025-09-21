@@ -1,9 +1,19 @@
 <?php 
     include("inc/header.php");
     include("../inc/config.php");
-    $poid=$_GET['poid'];
+    if (!isset($_GET['poid']) || empty($_GET['poid'])) 
+    {
+       header("location:product.php");
+       exit;
+    }
+    $poid=(int)$_GET['poid'];
     $po_q="select * from latest where po_id=".$poid;
     $po_res=mysqli_query($link,$po_q);
+    if (!$po_res || mysqli_num_rows($po_res) == 0) 
+    {
+        echo "<p style='color:red; text-align:center;'>Sorry! Latest Product not found!</p>";
+        exit;
+    }
     $po_row=mysqli_fetch_assoc($po_res);
     extract($po_row);
 

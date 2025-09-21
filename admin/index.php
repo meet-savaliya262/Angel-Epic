@@ -33,11 +33,49 @@ if (!isset($_SESSION['admin']['status']))
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-success">
               <div class="inner">
                 <?php
                   include("../inc/config.php");
+                  $cq = "SELECT COUNT(*) AS total_category FROM category";
+                  $cres = mysqli_query($link, $cq);
+                  $ccount = mysqli_fetch_assoc($cres)['total_category'];
+                ?>
+                <h3><?php echo $ccount; ?></h3>
+                <p>Total category's</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="product-list.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
 
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <?php
+                  $pq = "SELECT COUNT(*) AS total_products FROM products";
+                  $pres = mysqli_query($link, $pq);
+                  $pcount = mysqli_fetch_assoc($pres)['total_products'];
+                ?>
+                <h3><?php echo $pcount; ?></h3>
+                <p>Total Products</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="product-list.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <?php
                   $order_count_q = "SELECT COUNT(*) AS total_orders FROM userorder";
                   $order_count_res = mysqli_query($link, $order_count_q);
                   $order_count = mysqli_fetch_assoc($order_count_res)['total_orders'];
@@ -56,25 +94,9 @@ if (!isset($_SESSION['admin']['status']))
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Bounce Rate</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
                 <?php
-
                   $uq = "SELECT COUNT(*) AS total_users FROM signup";
                   $ures = mysqli_query($link, $uq);
                   $ucount = mysqli_fetch_assoc($ures)['total_users'];
@@ -91,20 +113,7 @@ if (!isset($_SESSION['admin']['status']))
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+          
           <!-- ./col -->
         </div>
         <!-- /.row -->        
