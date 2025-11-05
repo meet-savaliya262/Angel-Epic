@@ -4,11 +4,10 @@
                <div class="row">
                   <div class="col-md-6 offset-md-3">
                      <ul class="sociel">
-                           <li> <a href="#"> <i class="fa-brands fa-facebook"></i>   </a></li>
-                           <li> <a href="#">  <i class="fa-brands fa-twitter"></i>   </a></li>
-                           <li> <a href="#">  <i class="fa-brands fa-whatsapp"></i>  </a></li>
-                           <li> <a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-
+                     <li> <a href="https://www.facebook.com"> <i class="fa-brands fa-facebook"></i>   </a></li>
+                           <li> <a href="https://www.twitter.com">  <i class="fa-brands fa-twitter"></i>   </a></li>
+                           <li> <a href="https://www.whatsapp.com">  <i class="fa-brands fa-whatsapp"></i>  </a></li>
+                           <li> <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a></li>
                      </ul>
                   </div>
             </div>
@@ -33,27 +32,17 @@
                      </ul>
                   </div>
                </div>
+                 
                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
-                     <h3>service</h3>
-                      <ul class="lik">
-                    <li> <a href="#"> Data recovery</a></li>
-                         <li> <a href="#">Computer repair</a></li>
-                         <li> <a href="#">Mobile service</a></li>
-                         <li> <a href="#">Network solutions</a></li>
-                          <li> <a href="#">Technical support</a></li>
-                  </div>
-               </div>
-                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="contact">
-                     <h3>About lighten</h3>
+                     <h3>About lighter </h3>
                      <span>Tincidunt elit magnis nulla facilisis. Dolor Sapien nunc amet ultrices, </span>
                   </div>
                </div>
             </div>
          </div>
             <div class="copyright">
-               <p>Copyright <?php  echo date('Y'); ?> All Right Reserved By & Distributed By Meet Savaliya</p>
+               <p>Copyright <?php  echo date('Y'); ?> All Right Reserved By & Distributed By Akshay Andani</p>
             </div>
          
       </div>

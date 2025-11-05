@@ -8,41 +8,23 @@
 
             <div class="carousel-inner">
                <div class="carousel-item active">
-                  <img class="first-slide" src="images/banner2.jpg" alt="First slide">
+                  <img class="first-slide" src="images/hero1.jpg" alt="First slide" >
                   <div class="container">
-                     <div class="carousel-caption relative">
-                        <h1>Our <br> <strong class="black_bold">Latest </strong><br>
-                           <strong class="yellow_bold">Product </strong></h1>
-                        <p>It is a long established fact that a r <br>
-                          eader will be distracted by the readable content of a page </p>
-                        <a  href="#">see more Products</a>
-                     </div>
+                     
                   </div>
                </div>
                <div class="carousel-item">
-                  <img class="second-slide" src="images/banner2.jpg" alt="Second slide">
+                  <img class="second-slide" src="images/hero2.jpg" alt="Second slide">
                   <div class="container">
-                     <div class="carousel-caption relative">
-                        <h1>Our <br> <strong class="black_bold">Latest </strong><br>
-                           <strong class="yellow_bold">Product </strong></h1>
-                        <p>It is a long established fact that a r <br>
-                          eader will be distracted by the readable content of a page </p>
-                        <a  href="#">see more Products</a>
-                     </div>
+                     
                   </div>
                </div>
-               <div class="carousel-item">
+               <!-- <div class="carousel-item">
                   <img class="third-slide" src="images/banner2.jpg" alt="Third slide">
                   <div class="container">
-                     <div class="carousel-caption relative">
-                        <h1>Our <br> <strong class="black_bold">Latest </strong><br>
-                           <strong class="yellow_bold">Product </strong></h1>
-                        <p>It is a long established fact that a r <br>
-                          eader will be distracted by the readable content of a page </p>
-                        <a  href="#">see more Products</a>
-                     </div>
+                     
                   </div>
-               </div>
+               </div> -->
 
             </div>
             <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
@@ -87,60 +69,6 @@
   </div>
 </div>
 
-<!-- CHOOSE  -->
-      <div class="whyschose">
-         <div class="container">
-
-            <div class="row">
-               <div class="col-md-7 offset-md-3">
-                  <div class="title">
-                     <h2>Why <strong class="black">choose us</strong></h2>
-                     <span>Fastest repair service with best price!</span>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="choose_bg">
-         <div class="container">
-            <div class="white_bg">
-            <div class="row">
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="for_box">
-                     <i><img src="icon/1.png"/></i>
-                     <h3>Data recovery</h3>
-                     <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="for_box">
-                     <i><img src="icon/2.png"/></i>
-                     <h3>Computer repair</h3>
-                     <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="for_box">
-                     <i><img src="icon/3.png"/></i>
-                     <h3>Mobile service</h3>
-                     <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="for_box">
-                     <i><img src="icon/4.png"/></i>
-                     <h3>Network solutions</h3>
-                     <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <a class="read-more">Read More</a>
-               </div>
-            </div>
-         </div>
-       </div>
-      </div>
-<!-- end CHOOSE -->
 
 
 

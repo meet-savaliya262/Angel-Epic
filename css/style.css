@@ -1384,6 +1384,10 @@ nav.main-menu {
 	left: 0px;
 	top: 0px;
 }
+.carousel-item img{
+	height:550px;
+	width:1900px;
+}
 
 .heroslider .container {
 	position: relative;
